@@ -111,10 +111,10 @@ valor de la expresión regular debe ser configurable)
 - [Swagger](https://www.baeldung.com/swagger-2-documentation-for-spring-rest-api)
 
 
-### Comentarios
+### Comments
 Se desarrolla la api en dos modulos principales, los cuales se componen de:
 1. Api Rest Principal (Operaciones Rest)
-4. Almacenamiento en BD de memoria (H2 Database)
+2. Almacenamiento en BD de memoria (H2 Database)
 
 Se ingresa por el Api Principal, la cual tiene la operacion POST responsable validar, capturar y almacenar la informacion en la peticion 
 
@@ -122,32 +122,32 @@ H2 Database se levanta con su modulo administrativo de esta manera podemos ver c
 
 Ejemplo:
 ```
-curl -X POST "http://localhost:8080/users" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"mail\": \"juankart@hotmail.es\", \"name\": \"Daniela Florez\", \"password\": \"Jcar1983\", \"phones\": [ { \"cityCode\": \"01\", \"countryCode\": \"21\", \"number\": \"3044491800\" },{ \"cityCode\": \"01\", \"countryCode\": \"21\", \"number\": \"3002213076\" },{ \"cityCode\": \"01\", \"countryCode\": \"21\", \"number\": \"3044491802\" } ]}"
+curl -X POST "http://35.175.126.169:8080/users" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"mail\": \"juankart@hotmail.es\", \"name\": \"Daniela Florez\", \"password\": \"Jcar1983\", \"phones\": [ { \"cityCode\": \"01\", \"countryCode\": \"21\", \"number\": \"3044491800\" },{ \"cityCode\": \"01\", \"countryCode\": \"21\", \"number\": \"3002213076\" },{ \"cityCode\": \"01\", \"countryCode\": \"21\", \"number\": \"3044491802\" } ]}"
 ```
 
 ### Setup
-#### Instrucciones
+#### Instruccions
 Se deben tener instaladas todas las dependencias mencionadas para las tecnologias usadas
 
 Abrir el Proyecto Adjunto nisum-api y ejecutar el proyecto desde su clase principal NisumApiApplication.java
 
 
 ### API Url
-URL Local: http://localhost:8080/V1/users
+URL Local: http://35.175.126.169:8080/V1/users
 
-URL Swagger: http://localhost:8080/swagger-ui.html#/
+URL Swagger: http://35.175.126.169:8080/swagger-ui.html#
 
 URL H2 DB: http://localhost:8080/h2-console
 
 ### Endpoints
-POST http://localhost:8080/V1/users {JSON}
+POST http://35.175.126.169:8080/V1/users {JSON}
 
-GET http://localhost:8080/V1/users
+GET http://35.175.126.169:8080/V1/users
 
 
 ### Services
 #### Swagger
-http://localhost:8080/swagger-ui.html#/
+http://35.175.126.169:8080/swagger-ui.html#/
 
 ### Test
 #### UnitTest

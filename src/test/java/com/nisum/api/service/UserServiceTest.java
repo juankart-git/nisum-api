@@ -3,8 +3,6 @@ package com.nisum.api.service;
 import com.nisum.api.persistence.entity.Phone;
 import com.nisum.api.persistence.entity.User;
 import com.nisum.api.persistence.repository.UserRepository;
-import com.nisum.api.service.dto.UserInDTO;
-import com.nisum.api.util.Validator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

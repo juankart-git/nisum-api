@@ -11,4 +11,16 @@ public class Constants {
 
     public static final String REGISTERED_EMAIL = "Email is already registered";
 
+    public static final String EMPTY_EMAIL = "Email shouldn't be null";
+
+    public static final String EMPTY_NAME = "Name shouldn't be null";
+
+    public static final String EMPTY_PASSWORD = "Password shouldn't be null";
+
+    public static final String EMPTY_PHONE = "Phone number shouldn't be null";
+
+    public static final String EMPTY_CITY_CODE = "City code shouldn't be null";
+
+    public static final String EMPTY_COUNTRY_CODE = "Country code shouldn't be null";
+
 }

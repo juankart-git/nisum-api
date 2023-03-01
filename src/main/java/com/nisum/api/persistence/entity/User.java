@@ -1,8 +1,12 @@
 package com.nisum.api.persistence.entity;
 
+import com.nisum.api.util.Constants;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,13 +20,17 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(nullable = false)
+    @NotNull(message = Constants.EMPTY_NAME)
     private String name;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true )
+    @NotNull(message = Constants.EMPTY_EMAIL)
+    @Email(message = Constants.INVALID_EMAIL)
     private String mail;
 
-    @Column(nullable = false)
+    @NotNull(message = Constants.INVALID_PASSWORD)
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=.,]).{8,20}$",
+            message = Constants.INVALID_PASSWORD)
     private String password;
 
     private Date created;

@@ -1,8 +1,10 @@
 package com.nisum.api.persistence.entity;
 
+import com.nisum.api.util.Constants;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 @Entity
@@ -13,13 +15,13 @@ public class Phone {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(nullable = false)
+    @NotNull(message = Constants.EMPTY_PHONE)
     private String number;
 
-    @Column(nullable = false)
+    @NotNull(message = Constants.EMPTY_CITY_CODE)
     private String cityCode;
 
-    @Column(nullable = false)
+    @NotNull(message = Constants.EMPTY_COUNTRY_CODE)
     private String countryCode;
 
 }

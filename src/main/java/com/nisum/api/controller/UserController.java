@@ -7,6 +7,7 @@ import com.nisum.api.service.dto.UserOutDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -20,8 +21,8 @@ public class UserController {
     }
 
     @PostMapping(produces = { "application/json" }, consumes = { "application/json" })
-    public ResponseEntity<UserOutDTO> createUser(@RequestBody UserInDTO user){
-        return ResponseEntity.ok(this.userService.createUser(user));
+    public ResponseEntity<UserOutDTO> createUser(@RequestBody @Valid UserInDTO userRequest){
+        return ResponseEntity.ok(this.userService.createUser(userRequest));
     }
 
     @GetMapping(produces = { "application/json" })

@@ -7,45 +7,30 @@ import com.nisum.api.persistence.repository.UserRepository;
 import com.nisum.api.service.dto.UserInDTO;
 import com.nisum.api.service.dto.UserOutDTO;
 import com.nisum.api.util.Constants;
-import com.nisum.api.util.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
 
     private final UserRepository userRepository;
     private final UserDTOtoUser mapper;
-    private final Constants constants;
 
-    @Autowired
-    private Validator validator;
-
-    public UserService(UserRepository userRepository, UserDTOtoUser mapper, Constants constants) {
+    public UserService(UserRepository userRepository, UserDTOtoUser mapper) {
         this.userRepository = userRepository;
         this.mapper = mapper;
-        this.constants = constants;
     }
 
     public UserOutDTO createUser(UserInDTO userDTO){
-
-        if(!validator.emailValidator(userDTO.getMail())){
-            throw new NisumExceptions(constants.INVALID_EMAIL, HttpStatus.BAD_REQUEST);
-        }
-        if(!validator.passwordValidator(userDTO.getPassword())){
-            throw new NisumExceptions(constants.INVALID_PASSWORD, HttpStatus.BAD_REQUEST);
-        }
-        try {
-            return mapper.map(this.userRepository.save(mapper.map(userDTO)));
-        } catch (DataIntegrityViolationException ex){
-            throw new NisumExceptions(constants.REGISTERED_EMAIL, HttpStatus.NOT_ACCEPTABLE);
-        } catch (Exception ex){
-            throw new NisumExceptions(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        List<User> existUser = Optional.ofNullable(this.userRepository.findByMail(userDTO.getMail())).get();
+        if(existUser.size() > 0)
+            throw new NisumExceptions(Constants.REGISTERED_EMAIL, HttpStatus.NOT_ACCEPTABLE);
+        return mapper.map(this.userRepository.save(mapper.map(userDTO)));
     }
 
     public User updateUser(UserInDTO userDTO){
